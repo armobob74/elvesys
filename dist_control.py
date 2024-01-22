@@ -7,8 +7,8 @@ from ctypes import *
 from array import array
 from Elveflow64 import *
 
-sys.path.append('C:/dev/SDK/Python_64/DLL64')#add the path of the dll files here
-sys.path.append('C:/dev/SDK/Python_64')#add the path of the Elveflow64.py
+sys.path.append('./DLL64')#add the path of the dll files here
+sys.path.append('.')#add the path of the Elveflow64.py
 
 """
     Method: 

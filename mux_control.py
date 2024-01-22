@@ -7,8 +7,8 @@ from Elveflow64 import *
 
 # Add ‘dll’ files and ‘Elveflow64.py’ file in the following directories
 # edit the following 2 lines to add the path.
-sys.path.append('C:/dev/SDK/Python_64/DLL64')#add the path of the dll files here
-sys.path.append('C:/dev/SDK/Python_64')#add the path of the Elveflow64.py
+sys.path.append('./DLL64')#add the path of the dll files here
+sys.path.append('.')#add the path of the Elveflow64.py
 
 """
     Method: 

@@ -2,7 +2,7 @@
 # It defines all function prototype for use with python lib
 
 from ctypes import *
-ElveflowDLL=CDLL('C:/dev/SDK/Python_64/DLL64/Elveflow64.dll')# change this path 
+ElveflowDLL=CDLL('./DLL64/Elveflow64.dll')# change this path 
 
 
  # Elveflow Library
