@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OB1 Control</title>
+</head>
+<body>
+    <h1>OB1 Control</h1>
+    <form method="POST">
+        <label for="com_port_ob1">COM Port (OB1):</label>
+        <input type="text" name="com_port_ob1" required><br><br>
+        <label for="channel_to_initialize">Channel to Initialize (1-4):</label>
+        <input type="number" name="channel_to_initialize" min="1" max="4" required><br><br>
+        <label for="pressure_to_set">Pressure to Set (mbar):</label>
+        <input type="number" name="pressure_to_set" step="0.01" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
