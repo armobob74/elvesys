@@ -1,0 +1,11 @@
+{
+  "com-port-mux": "",
+  "current-state-mux": [0, 0, 0, 0, 0, 0, 0, 0],
+  "desired-state-mux": [0, 0, 0, 0, 0, 0, 1, 1],
+  "com-port-ob1": "",
+  "channel-to-initialize": "",
+  "pressure-to-set": "",
+  "com-port-flowmeter": "",
+  "initial-set-valve-id": "",
+  "desired-set-valve-id": ""
+}

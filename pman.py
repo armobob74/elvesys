@@ -36,9 +36,8 @@ def ob1(com_port, channel_to_initialize, pressure_to_set):
     ob1_state_control(com_port, channel_to_initialize, pressure_to_set)
     return {'state':'ok','message':'OB1'}
 
-@pman.route("/density-and-flow", methods=["GET"])
-def densityAndFlow():
-    com_port = config.get("com_port_flowmeter")
+@pman.route("/density-and-flow/<string:com_port>", methods=["GET"])
+def densityAndFlow(com_port):
     density, flow = get_density_and_flow(com_port)
     return {'state':'ok','message':{'density':density,'flow':flow}}
 
