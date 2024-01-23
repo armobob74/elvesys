@@ -29,4 +29,4 @@ def ob1():
     return render_template("ob1.html")
 
 if __name__ == "__main__":
-    app.run(debug=True, port = 6010)
+    app.run(debug=True, port = 5059)
