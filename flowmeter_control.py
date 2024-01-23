@@ -22,24 +22,23 @@ sys.path.append('.')#add the path of the Elveflow64.py
 def get_density_and_flow(com_port):
     density_response = 0
     flow_response = 0
-    while True:
-        # Initialization of BFS ( ! ! ! REMEMBER TO USE .encode('ascii') ! ! ! )
-        Instr_ID=c_int32()
-        error=BFS_Initialization(com_port.encode('ascii'),byref(Instr_ID))
-        #all functions will return error codes to help you to debug your code
-        print('error:%d' % error)
-        print("Instr ID: %d" % Instr_ID.value)
-        density=c_double(-1)
-        error=BFS_Get_Density(Instr_ID.value,byref(density))
-        #print('Density: ',density.value)
-        density_response = density.value
-        flow=c_double(-1)
-        error=BFS_Get_Flow(Instr_ID.value,byref(flow))
-        #print('Flow in microliters/min: ',flow.value)
-        flow_response = flow.value
-        # Calling destructor function
-        error=BFS_Destructor(Instr_ID.value)
-        return density_response, flow_response
+    # Initialization of BFS ( ! ! ! REMEMBER TO USE .encode('ascii') ! ! ! )
+    Instr_ID=c_int32()
+    error=BFS_Initialization(com_port.encode('ascii'),byref(Instr_ID))
+    #all functions will return error codes to help you to debug your code
+    print('error:%d' % error)
+    print("Instr ID: %d" % Instr_ID.value)
+    density=c_double(-1)
+    error=BFS_Get_Density(Instr_ID.value,byref(density))
+    #print('Density: ',density.value)
+    density_response = density.value
+    flow=c_double(-1)
+    error=BFS_Get_Flow(Instr_ID.value,byref(flow))
+    #print('Flow in microliters/min: ',flow.value)
+    flow_response = flow.value
+    # Calling destructor function
+    error=BFS_Destructor(Instr_ID.value)
+    return density_response, flow_response
 
 # def main():
 #     density_response, flow_response = get_density_and_flow('COM24')
