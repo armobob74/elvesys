@@ -6,6 +6,10 @@ from mux_control import mux_state_control
 from flowmeter_control import get_density_and_flow
 from dist_control import dist_state_control
 
+config = {}
+with open('config.json') as f:
+    config = json.load(f)
+
 pman = Blueprint('pman', __name__)
 
 def extract_pman_args(f):
@@ -33,8 +37,8 @@ def ob1(com_port, channel_to_initialize, pressure_to_set):
     return {'state':'ok','message':'OB1'}
 
 @pman.route("/density-and-flow", methods=["GET"])
-@extract_pman_args
-def densityAndFlow(com_port):
+def densityAndFlow():
+    com_port = config.get("com_port_flowmeter")
     density, flow = get_density_and_flow(com_port)
     return {'state':'ok','message':{'density':density,'flow':flow}}
 
@@ -43,4 +47,3 @@ def densityAndFlow(com_port):
 def dist(com_port, initial_set_valveID, desired_set_valveID):
     dist_state_control(com_port, initial_set_valveID, desired_set_valveID)
     return {'state':'ok','message':'Valving'}
-
