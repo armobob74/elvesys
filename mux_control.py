@@ -39,7 +39,7 @@ def mux_state_control(com_port, curr_state, desired_state):
     # Set the state of the channels as per new config set in previous lines
     error=MUX_Wire_Set_all_valves(Instr_ID.value, valve_state, 16) 
     time.sleep(2)
-    # Set all valves to curr_state
+    # Set all valves to desired_state
     for i in range (8):
         valve_state[i] = c_int32(desired_state[i])
 
