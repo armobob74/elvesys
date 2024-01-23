@@ -27,7 +27,7 @@ def ob1():
     ob1_state_control(com_port, channel_to_initialize, pressure_to_set)
     return {'state':'ok','message':'OB1'}
 
-@pman.route("/density-and-flow", methods=["POST"])
+@pman.route("/density-and-flow", methods=["GET"])
 def densityAndFlow():
     d = json.loads(request.data)
     args = d['args']
