@@ -5,6 +5,7 @@ from ob1_control import ob1_state_control
 from mux_control import mux_state_control
 from flowmeter_control import get_density_and_flow
 from dist_control import dist_state_control
+import pdb
 
 config = {}
 with open('config.json') as f:
@@ -27,7 +28,7 @@ def extract_pman_args(f):
 @pman.route("/mux", methods=["POST"])
 @extract_pman_args
 def mux(com_port, curr_state, desired_state):
-    mux_state_control(com_port, curr_state, desired_state)
+    ret = mux_state_control(com_port, curr_state, desired_state)
     return {'state':'ok','message':'Mux'}
 
 @pman.route("/ob1", methods=["POST"])

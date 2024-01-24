@@ -6,6 +6,7 @@ import pytest
 import json
 from flask import Flask
 from pman import pman
+import pdb
 
 with open('test_config.json') as f:
     test_config = json.load(f)
@@ -13,7 +14,7 @@ with open('test_config.json') as f:
 @pytest.fixture
 def app():
     app = Flask(__name__)
-    app.register_blueprint(pman)
+    app.register_blueprint(pman, url_prefix="/pman")
     yield app
 
 @pytest.fixture
@@ -25,17 +26,18 @@ def test_mux_post(client):
     current_state = test_config.get('current-state-mux')
     desired_state = test_config.get('desired-state-mux')
     data = json.dumps({"args": [com_port, current_state, desired_state]})
-    response = client.post('/mux', data=data, content_type='application/json')
+    response = client.post('/pman/mux', data=data, content_type='application/json')
     assert response.status_code == 200
     assert 'state' in response.json
     assert response.json['state'] == 'ok'
+
 
 def test_ob1_post(client):
     com_port = test_config.get('com-port-ob1')
     channel_to_initialize = test_config.get("channel-to-initialize")
     pressure_to_set = test_config.get("pressure-to-set")
     data = json.dumps({'args': [com_port, channel_to_initialize, pressure_to_set]})
-    response = client.post('/ob1', data=data, content_type='application/json')
+    response = client.post('/pman/ob1', data=data, content_type='application/json')
     assert response.status_code == 200
     assert 'state' in response.json
     assert response.json['state'] == 'ok'
@@ -55,7 +57,7 @@ def test_dist_post(client):
     initial_set_valveID = test_config.get('initial-set-valve-id')
     desired_set_valveID = test_config.get('desired-set-valve-id')
     data = json.dumps({'args': [com_port, initial_set_valveID, desired_set_valveID]})
-    response = client.post('/ob1', data=data, content_type='application/json')
+    response = client.post('/pman/dist', data=data, content_type='application/json')
     assert response.status_code == 200
     assert 'state' in response.json
     assert response.json['state'] == 'ok'

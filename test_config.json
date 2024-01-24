@@ -1,7 +1,7 @@
 {
-  "com-port-mux": "",
+  "com-port-mux": "COM30",
   "current-state-mux": [0, 0, 0, 0, 0, 0, 0, 0],
-  "desired-state-mux": [0, 0, 0, 0, 0, 0, 1, 1],
+  "desired-state-mux": [0, 1, 0, 0, 0, 0, 1, 1],
   "com-port-ob1": "",
   "channel-to-initialize": "",
   "pressure-to-set": "",

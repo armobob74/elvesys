@@ -1,3 +1,4 @@
 {
-	"com_port_flowmeter":""
+	"com_port_flowmeter":"",
+	"com_port_mux":"COM30"
 }

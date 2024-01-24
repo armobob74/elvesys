@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect
 from pman import pman
 from ob1_control import ob1_state_control
 from mux_control import mux_state_control
-
+import pdb
 app = Flask(__name__)
 app.register_blueprint(pman, url_prefix='/pman')
 
@@ -13,9 +13,10 @@ def index():
 @app.route("/mux", methods=["GET", "POST"])
 def mux():
     if request.method == "POST":
-        com_port_mux = request.form["com_port_mux"]
+        com_port_mux = request.form["com_port"]
         curr_state = [int(request.form[f"curr_state_{i}"]) for i in range(8)]
         desired_state = [int(request.form[f"desired_state_{i}"]) for i in range(8)]
+        pdb.set_trace()
         mux_state_control(com_port_mux, curr_state, desired_state)
     return render_template("mux.html")
 
