@@ -28,7 +28,7 @@ def extract_pman_args(f):
 @pman.route("/mux", methods=["POST"])
 @extract_pman_args
 def mux(com_port, curr_state, desired_state):
-    ret = mux_state_control(com_port, curr_state, desired_state)
+    mux_state_control(com_port, curr_state, desired_state)
     return {'state':'ok','message':'Mux'}
 
 @pman.route("/ob1", methods=["POST"])
