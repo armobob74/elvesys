@@ -16,7 +16,6 @@ def mux():
         com_port_mux = request.form["com_port"]
         curr_state = [int(request.form[f"curr_state_{i}"]) for i in range(8)]
         desired_state = [int(request.form[f"desired_state_{i}"]) for i in range(8)]
-        pdb.set_trace()
         mux_state_control(com_port_mux, curr_state, desired_state)
     return render_template("mux.html")
 
