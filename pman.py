@@ -13,7 +13,6 @@ with open('config.json') as f:
 
 name_to_port = config['name_to_port']
 
-
 pman = Blueprint('pman', __name__)
 
 def extract_pman_args(f):
@@ -25,6 +24,7 @@ def extract_pman_args(f):
     def decorated_function(*args, **kwargs):
         data = json.loads(request.data)
         args = data.get('args',[])
+        print(args)
         return f(*args)
     return decorated_function
 
@@ -39,7 +39,7 @@ def mux(device_name, curr_state, desired_state):
 @extract_pman_args
 def ob1(device_name, channel_to_initialize, pressure_to_set):
     com_port = name_to_port[device_name]
-    ob1_state_control(com_port, channel_to_initialize, pressure_to_set)
+    ob1_state_control(com_port, int(channel_to_initialize), float(pressure_to_set))
     return {'state':'ok','message':'OB1'}
 
 @pman.route("/density-and-flow/<string:device_name>", methods=["GET"])

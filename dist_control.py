@@ -37,20 +37,18 @@ def dist_state_control(com_port, initial_set_valveID, desired_set_valveID):
     set_initial_valve=c_int32(set_initial_valve)
     error=MUX_DRI_Set_Valve(Instr_ID.value,set_initial_valve,1) 
 
-    time.sleep(2)
+    time.sleep(1)
 
     # Set desired state of the distributor
     to_actuate=c_double()
     to_actuate=int(desired_set_valveID)
     to_actuate=c_int32(to_actuate)
     error=MUX_DRI_Set_Valve(Instr_ID.value,to_actuate,1) 
-
+    time.sleep(1)
     error=MUX_DRI_Destructor(Instr_ID.value)
     
-    time.sleep(2)
-    
 # def main():
-#     dist_state_control('COM20', 12, 1)
+#     dist_state_control('COM16', 12, 1)
 
 # if __name__ == "__main__":
 #     main()

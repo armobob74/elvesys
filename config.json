@@ -1,7 +1,12 @@
 {
-"name-to-port":{
-	"Flowmeter":"",
-	"CharlesBridge":"",
-	"etc":""
+"name_to_port":{
+	"OB1":"COM25",
+	"CharlesBridge":"COM28",
+	"BFS1":"COM7",
+	"BFS2":"COM4",
+	"VH":"COM9",
+	"TM":"COM10",
+	"BX":"COM12",
+	"SH":"COM16"
 }
 }

@@ -1,9 +1,11 @@
 from flask import Flask, request, render_template, redirect
 from pman import pman
+from flask_cors import CORS
 from ob1_control import ob1_state_control
 from mux_control import mux_state_control
 import pdb
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(pman, url_prefix='/pman')
 
 @app.route("/", methods=["GET", "POST"])

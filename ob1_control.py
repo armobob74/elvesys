@@ -38,10 +38,10 @@ def ob1_state_control(com_port, channel_to_initialize, pressure_to_set):
     # convert to c_double
     set_pressure=c_double(set_pressure)
     error=OB1_Set_Press(Instr_ID.value, set_channel, set_pressure, byref(Calib),1000) 
-    time.sleep(2)
+    time.sleep(1)
     
-def main():
-    ob1_state_control('COM25', 2, 0)
+# def main():
+#     ob1_state_control('COM25', 2, 0)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

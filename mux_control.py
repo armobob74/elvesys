@@ -38,20 +38,20 @@ def mux_state_control(com_port, curr_state, desired_state):
 
     # Set the state of the channels as per new config set in previous lines
     error=MUX_Wire_Set_all_valves(Instr_ID.value, valve_state, 16) 
-    time.sleep(2)
+    time.sleep(0.5)
     # Set all valves to desired_state
     for i in range (8):
         valve_state[i] = c_int32(desired_state[i])
 
     # Set the state of the channels as per new config set in previous lines
     error=MUX_Wire_Set_all_valves(Instr_ID.value, valve_state, 16) 
-    time.sleep(10)
+    time.sleep(0.5)
     # Close the communication with MUX Wire connected on COM24
     error=MUX_Destructor(Instr_ID.value)
-    time.sleep(2)
+    # time.sleep(2)
 
-def main():
-    mux_state_control('COM28', [0,0,0,0,0,0,0,0], [1,1,1,0,0,0,0,0])
+# def main():
+#     mux_state_control('COM28', [0,0,0,0,0,0,0,0], [1,1,1,0,0,0,0,0])
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
