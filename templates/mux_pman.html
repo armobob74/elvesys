@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mux State Control</title>
+    <style>
+      html {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #checkbox_container {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5em;
+        justify-content: center;
+        padding-top: 5px;
+        border-radius: 1em;
+      }
+
+      .checkbox_label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        transition: 0.2s all;
+      }
+      .checkbox_label:hover {
+        cursor: pointer;
+      }
+      .submit {
+        margin-top: 1em;
+        padding: 0.5em;
+        border-radius: 4px;
+        background-color: green;
+        transition: 0.1s all;
+	color:white;
+	border:none;
+      }
+      .submit:hover {
+        background-color: rgb(0,200,0);
+        color: white;
+        cursor: pointer;
+      }
+
+      select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: #fff;
+          border-color: green;
+          font-size: 16px;
+          color: #333;
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          background-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mux State Control</h1>
+    <form method="POST" action="/pman/mux-UI">
+      <label for="device_name">Device Name</label>
+      <select name="device_name" id="device_name" required>
+        {% for name in device_names %}
+        <option>{{name}}</option>
+        {% endfor %}
+      </select>
+      <h3>Set State</h3>
+      <div id="checkbox_container">
+        {% for i in range(1, 9) %}
+        <label class="checkbox_label" for="state_{{i}}">
+          <input
+            type="checkbox"
+            id="state_{{i}}"
+            name="state_{{i}}"
+            value="1"
+          />
+          {{i}}
+        </label>
+        {% endfor %}
+      </div>
+      <div
+        style="
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <button class="submit" type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+</html>
+

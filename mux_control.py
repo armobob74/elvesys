@@ -18,6 +18,20 @@ sys.path.append('.')#add the path of the Elveflow64.py
         2. curr_state - integer array of size 8 (with 0 and 1 as the elements), signifying current state of all channels in a Mux. 0 - Low, 1- High 
         3. desired_state - integer array of size 8 (with 0 and 1 as the elements), signifying desired state of all channels in a Mux.
 """
+def mux_half_control(com_port,desired_state):
+    """ like mux_state_control but does not use current state """
+    # Initialize valve and actuate
+    Instr_ID = c_int32()
+    # See NIMAX or device manager to determine the instrument name 
+    error = MUX_Initialization(com_port.encode('ascii'),byref(Instr_ID)) 
+    # All of the 16 channels are set to LOW state (0) in the following line
+    valve_state=(c_int32*16)(0) 
+    for i in range (8):
+        valve_state[i] = c_int32(desired_state[i])
+    error=MUX_Wire_Set_all_valves(Instr_ID.value, valve_state, 16) 
+    error=MUX_Destructor(Instr_ID.value)
+
+
 def mux_state_control(com_port, curr_state, desired_state):
     # Initialize valve and actuate
     Instr_ID = c_int32()
