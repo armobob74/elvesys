@@ -1,8 +1,8 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, redirect, request, render_template
 from functools import wraps
 import json
 from ob1_control import ob1_state_control
-from mux_control import mux_state_control
+from mux_control import mux_half_control, mux_state_control
 from flowmeter_control import get_density_and_flow
 from dist_control import dist_state_control
 import pdb
@@ -28,7 +28,25 @@ def extract_pman_args(f):
         return f(*args)
     return decorated_function
 
-@pman.route("/mux", methods=["POST"])
+@pman.get("/mux")
+def muxPage():
+    device_names = list(name_to_port.keys())
+    return render_template('mux_pman.html', names=device_names)
+
+@pman.post("/mux-UI")
+def muxUI():
+    """ Handles requests from the pman mux UI """
+    device_name = request.form['device_name']
+    desired_states = []
+    for i in range(1,9):
+        state = request.form[f'state_{i}']
+        desired_states.append(state)
+    com_port = name_to_port[device_name]
+    mux_half_control(com_port, desired_state=desired_states)
+    return redirect('/pman/mux')
+
+
+@pman.post("/mux")
 @extract_pman_args
 def mux(device_name, curr_state, desired_state):
     com_port = name_to_port[device_name]
