@@ -1,0 +1,16 @@
+{
+    "devices": {
+      "elvesys" : {
+            "CharlesBridge": "COM27",
+            "WashingBridge":"COM19",
+            "BX": "COM12",
+            "TM": "COM10",
+            "VH": "COM9",
+            "SH": "COM16",
+            "OB1": "COM15",
+            "BFS2": "COM4",
+            "BFS1": "COM7"
+        }
+    }
+  }
+  

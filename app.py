@@ -3,6 +3,7 @@ from pman import pman
 from flask_cors import CORS
 from ob1_control import ob1_state_control
 from mux_control import mux_state_control
+from dist_control import dist_state_control
 import pdb
 app = Flask(__name__)
 CORS(app)
@@ -29,6 +30,15 @@ def ob1():
         pressure_to_set = float(request.form["pressure_to_set"])
         ob1_state_control(com_port_ob1, channel_to_initialize, pressure_to_set)
     return render_template("ob1.html")
+
+@app.route("/dist", methods=["GET", "POST"])
+def dist():
+    if request.method == "POST":
+        com_port_dist = request.form["com_port_dist"]
+        initial_channel = int(request.form["initial_channel"])
+        final_channel = int(request.form["final_channel"])
+        dist_state_control(com_port_dist, initial_channel, final_channel)
+    return render_template("dist.html")
 
 if __name__ == "__main__":
     app.run(debug=True, port = 5059)

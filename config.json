@@ -1,7 +1,8 @@
 {
 "name_to_port":{
-	"OB1":"COM25",
-	"CharlesBridge":"COM28",
+	"OB1":"COM15",
+	"CharlesBridge":"COM27",
+	"WashingBridge":"COM19",
 	"BFS1":"COM7",
 	"BFS2":"COM4",
 	"VH":"COM9",
