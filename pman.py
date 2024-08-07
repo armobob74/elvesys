@@ -30,17 +30,20 @@ def extract_pman_args(f):
 
 @pman.get("/mux")
 def muxPage():
-    device_names = list(name_to_port.keys())
-    return render_template('mux_pman.html', names=device_names)
+    import pdb
+    device_names = [k for k in name_to_port.keys() if 'Bridge' in k]
+    return render_template('mux_pman.html', device_names=device_names)
 
 @pman.post("/mux-UI")
 def muxUI():
     """ Handles requests from the pman mux UI """
     device_name = request.form['device_name']
-    desired_states = []
+    desired_states = [0] * 8
     for i in range(1,9):
-        state = request.form[f'state_{i}']
-        desired_states.append(state)
+        s = f"state_{i}"
+        if s in request.form:
+            state = int(request.form[s])
+            desired_states[i-1] = state
     com_port = name_to_port[device_name]
     mux_half_control(com_port, desired_state=desired_states)
     return redirect('/pman/mux')
